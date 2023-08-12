@@ -14,11 +14,11 @@ async function base() {
         let URL = prompt('Enter image URL (REQUIRED): ');
        
         if (!URL || URL.trim() === '') {
-            print('Please enter a valid URL');
+            print('Please enter a valid URL.');
             return;
         }
         if (!isImageURL(URL)) {
-            print('Please enter a valid URL');
+            print('Please enter a valid URL.');
             return;
         }
     
