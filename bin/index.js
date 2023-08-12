@@ -11,18 +11,18 @@ function sleep(ms) {
 
 async function base() {
     if (!fs.existsSync(path.join(__dirname, 'python/base/base.jpg')) || !fs.existsSync(path.join(__dirname, 'python/base/'))) {    
-        let url = prompt('Enter image url (REQUIRED): ');
+        let URL = prompt('Enter image URL (REQUIRED): ');
        
-        if (!url || url.trim() === '') {
-            print('Please enter a valid url');
+        if (!URL || URL.trim() === '') {
+            print('Please enter a valid URL');
             return;
         }
-        if (!isImageURL(url)) {
-            print('Please enter a valid url');
+        if (!isImageURL(URL)) {
+            print('Please enter a valid URL');
             return;
         }
     
-        const response = await fetch(url);
+        const response = await fetch(URL);
 
         const blob = await response.blob();
 
@@ -36,17 +36,17 @@ async function base() {
 
         fs.writeFile(fullpath + '/python/base/base.jpg', buffer, (err) => { if (err) throw err;});
     } else {
-        let url = prompt('Enter image url (OPTIONAL): ');
+        let URL = prompt('Enter image URL (OPTIONAL): ');
    
-        if (!url || url.trim() === '') {
+        if (!URL || URL.trim() === '') {
             return;
         }
-        if (!isImageURL(url)) {
-            print('Please enter a valid url');
+        if (!isImageURL(URL)) {
+            print('Please enter a valid URL.');
             return;
         }
         
-        const response = await fetch(url);
+        const response = await fetch(URL);
 
         const blob = await response.blob();
 
