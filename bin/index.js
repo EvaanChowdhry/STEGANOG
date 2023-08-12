@@ -76,3 +76,6 @@ zip();
 
 
 console.log("Successfully saved in " + fullpath.replace("bin", ""));
+
+const { exec } = require('child_process');
+exec('start "" "' + fullpath.replace("bin", "") + '"');
