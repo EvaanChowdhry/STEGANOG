@@ -9,16 +9,22 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["hacking","hidden","steganography","ethical","image","wikipedia"],
+  "keywords": [
+    "hacking",
+    "hidden",
+    "steganography",
+    "ethical",
+    "image",
+    "wikipedia"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "fs": "^0.0.1-security",
     "image-url-validator": "^1.0.4",
-    "node-fetch": "^2.6.11",
+    "node-fetch": "^2.7.0",
     "path": "^0.12.7",
-    "prompt-sync": "^4.2.0",
-    "python-shell": "^5.0.0"
+    "prompt-sync": "^4.2.0"
   },
   "repository": {
     "url": "https://github.com/Phantom8015/STEGANOG"

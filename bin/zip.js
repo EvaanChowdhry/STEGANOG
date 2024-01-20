@@ -1,11 +1,20 @@
 const path = require('path');
 
-async function main() {
+async function main(directory) {
     const fullpath = path.join(__dirname);
-    const {PythonShell} = require('python-shell');
-    PythonShell.run(fullpath + '/python/zip.py', null, function (err) {
-        if (err) throw err;
-    }
+    const exec = require('child_process').exec;
+    command = "python \"" + fullpath + "/python/zip.py\" " + directory;
+    exec(command, (error, stdout, stderr) => {
+        if (error) {
+            console.log(`error: ${error.message}`);
+            return;
+        }
+
+        if (stderr) {
+            console.log(`stderr: ${stderr}`);
+            return;
+        }
+    }  
     );
 }
 

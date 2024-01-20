@@ -4,6 +4,9 @@ const fs = require('fs');
 const prompt = require('prompt-sync')({sigint: true});
 const fetch = require('node-fetch');
 const isImageURL = require('image-url-validator').default;
+const fullpath = path.join(__dirname);
+fs.writeFile(fullpath + '/dir.txt', "", (err) => { if (err) throw err;});
+
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -59,20 +62,33 @@ async function base() {
 }
 
 base();
+const item = prompt('Choose a task: 1. Hide text in file.  2. Enter directory of the file to hide: ')
 sleep(1000);
 
-const fullpath = path.join(__dirname);
+let dir = ""
 
-let text = process.argv.slice(2).join(' ');
 
-if (!text || text.trim() === '') {
+if (item == 1) {
     text = prompt('Enter text: ');
+    fs.writeFile(fullpath + '/python/text.txt', text, (err) => { if (err) throw err;});
+    dir = `"${fullpath}` + '/python/text.txt"';
+} else if (item == 2) {
+    dir = prompt("Enter directory: ");
+    dirham = dir.replace(/['"]+/g, '');
+    dir = dir.trim();
+
+    if (!fs.existsSync(dirham)) {
+        console.log("Directory does not exist.");
+        return;
+    }
+    fs.writeFile(fullpath + '/dir.txt', dir, (err) => { if (err) throw err;});
+} else {
+    console.log("Invalid input.");
+    return;
 }
 
-fs.writeFile(fullpath + '/python/text.txt', text, (err) => { if (err) throw err;});
-
 const zip = require('./zip.js');
-zip();
+zip(dir);
 
 
 console.log("Successfully saved in " + fullpath.replace("bin", ""));
